@@ -28,26 +28,31 @@ var startGame = function(){
     
         $(".crystals").append(crystal);
     }
+
+    $("#past").html("Total Score: " + past);
     
 }
 
 startGame();
 
 
-$(".crystal").on("click", function() {
+$(document).on("click", ".crystal", function() {
 
     var num = parseInt($(this).attr("data-random"));
 
     past += num;
 
+    $("#past").html("Total Score: " + past);
+
     console.log(past);
 
     if(past > randomNumber){
-        losses--;
+        losses++;
 
-        $("#LOSSES").html(losses);
+        $("#LOSSES").html("Lost: " + losses);
 
         past = 0;
+
 
         startGame();
         
@@ -55,7 +60,7 @@ $(".crystal").on("click", function() {
     else if(past === randomNumber){
         wins++;
 
-        $("#WINS").html(wins);
+        $("#WINS").html("Wins: " + wins);
 
         past = 0;
 
