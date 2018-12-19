@@ -1,26 +1,38 @@
 var randomNumber;
-var wins;
-var losses;
+var wins = 0;
+var losses = 0;
 var past = 0;
 var playerNumber;
 
-randomNumber = Math.floor(Math.random() * 102) + 19;
+var startGame = function(){
 
-$("#result").html("Random Result:  " + randomNumber);
+    $(".crystals").empty();
 
-for(var i = 0; i < 4; i ++){
+    randomNumber = Math.floor(Math.random() * 102) + 19;
 
-    var random = Math.floor(Math.random() * 11) + 1;
+    $("#result").html("Random Result:  " + randomNumber);
+    
+    for(var i = 0; i < 4; i ++){
+    
+        var random = Math.floor(Math.random() * 11) + 1;
 
-
-    var crystal = $("<div>");
-        crystal.attr({
-            "class": 'crystal',
-            "data-random": random
-        });
-
-    $(".crystals").append(crystal);
+        
+    
+        var crystal = $("<div>");
+            crystal.attr({
+                "class": 'crystal',
+                "data-random": random
+            });
+    
+            crystal.html(random)
+    
+        $(".crystals").append(crystal);
+    }
+    
 }
+
+startGame();
+
 
 $(".crystal").on("click", function() {
 
@@ -28,12 +40,28 @@ $(".crystal").on("click", function() {
 
     past += num;
 
-    if(past > randomNumber){
-        console.log("You LOSE!");
-    }
-
     console.log(past);
 
+    if(past > randomNumber){
+        losses--;
+
+        $("#LOSSES").html(losses);
+
+        past = 0;
+
+        startGame();
+        
+    }
+    else if(past === randomNumber){
+        wins++;
+
+        $("#WINS").html(wins);
+
+        past = 0;
+
+        startGame();
+    }
+   
 
 
 });
