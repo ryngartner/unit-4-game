@@ -1,0 +1,17 @@
+body {
+    background-image: url(https://www.backgroundsy.com/file/large/light-blue-background.jpg)
+}
+
+.crystals{
+    display: flex;
+    align-items: center; 
+}
+
+
+.crystal{
+    height:100px;
+    width:100px;
+}
+
+
+
